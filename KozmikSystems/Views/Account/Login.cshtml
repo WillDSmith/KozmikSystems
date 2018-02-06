@@ -1,0 +1,44 @@
+﻿@using KozmikSystems.Models
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LogReg.cshtml";
+}
+
+<div class="form-box" id="login-box">
+    <div class="header">Sign In</div>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="body bg-gray">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="remember_me" /> Remember me
+            </div>
+        </div>
+        <div class="footer">
+            <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+            <p><a href="#">I forgot my password</a></p>
+            <a href="@Url.Action("Register", "Account")" class="text-center">Register a new membership</a>
+        </div>
+        <div class="margin text-center">
+            <span>Register using social networks</span>
+            <br />
+            <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+            <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+            <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

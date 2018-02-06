@@ -1,0 +1,51 @@
+﻿@model KozmikSystems.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_LogReg.cshtml";
+    ViewBag.Title = "Register";
+}
+
+<div class="form-box" id="login-box">
+    <div class="header">Register New Membership</div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+    <div class="body bg-gray">
+        <div class="form-group">
+            <input type="text" name="fullname" class="form-control" placeholder="Full Name" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="User Name" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="email" class="form-control" placeholder="Email" />
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Password" />
+        </div>
+        <div class="form-group">
+            <input type="password" name="confirmpassword" class="form-control" placeholder="Retype password" />
+        </div>
+        @*<div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownList("UserRole", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+            </div>
+        </div>*@
+    </div>
+        <div class="footer">
+            <button type="submit" class="btn bg-olive btn-block">Sign me up</button>
+            <a href="@Url.Action("Login", "Account")" class="text-center">I already have a membership</a>
+        </div>
+    }
+    <div class="margin text-center">
+        <span>Register using social networks</span>
+        <br />
+        <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+        <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+        <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

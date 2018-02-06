@@ -1,0 +1,48 @@
+﻿<style>
+    .page-header-mod {
+        padding-bottom: 9px;
+        margin: 20px 0 10px;
+    }
+</style>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header-mod">Employee Portal</h3>
+    </div>
+</div>
+<div class="panel with-nav-tabs panel-default">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#firstTab">View All</a></li>
+            <li><a data-toggle="tab" href="#secondTab">Add New</a></li>
+        </ul>
+        <br />
+        <div class="tab-content">
+            <div id="firstTab" class="tab-pane fade in active">@Html.Action("ViewAll")</div>
+            <div id="secondTab" class="tab-pane fade in">@Html.Action("AddEdit")</div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+        function activatejQueryTable() {
+            $("#employeeTable").DataTable();
+        }
+
+        $(function () {
+            activatejQueryTable();
+        });
+
+    </script>
+}
+
